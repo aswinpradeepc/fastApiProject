@@ -1,18 +1,17 @@
-from fastapi import FastAPI
 import os
+from fastapi import FastAPI
+from determine_employee import get_employee
 
 app = FastAPI()
 
 # Use the PORT environment variable with a default value of 10000
 port = int(os.environ.get("PORT", 10000))
 
-@app.get("/")
-async def read_root():
-    return {"message": "Hello, Render!"}
+@app.get("/{task}")
+async def say_hello(task: str):
+    email = get_employee(task)
+    return {"message": f"Hello {email}"}
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}, welcome to FastAPI on Render!"}
 
 if __name__ == "__main__":
     import uvicorn
