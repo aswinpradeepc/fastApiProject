@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+import os
 app = FastAPI()
 
 port = int(os.environ.get("PORT", 10000))
