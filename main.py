@@ -3,16 +3,16 @@ import os
 
 app = FastAPI()
 
-# Use the environment variable directly with a default value
+# Use the PORT environment variable with a default value of 10000
 port = int(os.environ.get("PORT", 10000))
 
 @app.get("/")
 async def read_root():
-    return {"message": "Hello World"}
+    return {"message": "Hello, Render!"}
 
 @app.get("/hello/{name}")
 async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+    return {"message": f"Hello {name}, welcome to FastAPI on Render!"}
 
 if __name__ == "__main__":
     import uvicorn
